@@ -16,12 +16,13 @@ module LineDetector
   # "\v"     => :vt
   # "\f"     => :ff
   # "\u2028" => :ls
+  # "\u2029" => :ps
   # "\na\r"  => :mix
   # "a"      => :none
   # ""       => :none
   #
   def self.detect_line_ending_of_text(text)
-    line_endings = text.split(/[^\r\n\v\f\u2028]/)
+    line_endings = text.split(/[^\r\n\v\f\u2028\u2029]/)
       .reject { |ending| ending == '' }
       .map { |ending| ending.gsub(/(.+?)(\1)+/m, '\1') }
       .uniq
@@ -46,6 +47,8 @@ module LineDetector
         :ff
       when "\u2028"
         :ls
+      when "\u2029"
+        :ps
       else
         :unknown
       end

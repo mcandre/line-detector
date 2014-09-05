@@ -14,6 +14,7 @@ Given(/^the program has finished$/) do
   @cucumber_vt = `line-detector examples/index-vertical.html`
   @cucumber_ff = `line-detector examples/index-form-feed.html`
   @cucumber_ls = `line-detector examples/index-line-separator.html`
+  @cucumber_ps = `line-detector examples/index-paragraph-separator.html`
 end
 
 Then(/^the output is correct for each test$/) do
@@ -68,4 +69,8 @@ Then(/^the output is correct for each test$/) do
   lines_ls = @cucumber_ls.split("\n")
   expect(lines_ls.length).to eq(1)
   expect(lines_ls[0]).to match(%r(^examples/index-line-separator.html: ls$))
+
+  lines_ps = @cucumber_ps.split("\n")
+  expect(lines_ps.length).to eq(1)
+  expect(lines_ps[0]).to match(%r(^examples/index-paragraph-separator.html: ps$))
 end

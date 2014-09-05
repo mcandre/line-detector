@@ -71,6 +71,7 @@ $ irb
 There are numerous programs that can help convert files to different line ending formats:
 
 * [dos2unix](http://waterlan.home.xs4all.nl/dos2unix.html)
+* [tofrodos](http://tofrodos.sourceforge.net/)
 * [tr](http://man.cx/tr)
 * [sed](https://www.gnu.org/software/sed/)
 * [awk](http://cm.bell-labs.com/cm/cs/awkbook/index.html)

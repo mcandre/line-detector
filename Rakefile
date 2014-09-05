@@ -9,6 +9,7 @@ task :install => [:gem] do
 end
 
 task :test => [:clean, :install] do
+  sh 'rspec'
   sh 'cucumber'
 end
 

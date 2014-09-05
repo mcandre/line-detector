@@ -61,4 +61,23 @@ module LineDetector
   def self.detect_line_ending_of_file(filename)
     detect_line_ending_of_text(open(filename).read)
   end
+
+  #
+  # A more capable version of String#lines,
+  # that handles some of the more obscure line ending formats.
+  #
+  # If line ending format cannot be determined,
+  # returns :unknown.
+  #
+  def self.lines(text)
+    line_ending = detect_line_ending_of_text(text)
+
+    if line_ending == :unknown
+      line_ending
+    elsif line_ending == :none
+      [text]
+    else
+      text.split(NAME2EOL[line_ending])
+    end
+  end
 end

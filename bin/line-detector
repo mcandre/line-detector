@@ -7,7 +7,7 @@ require 'rubygems'
 require 'line-detector'
 
 def main
-  filename = ['-']
+  filename = '-'
 
   option = OptionParser.new do |option|
     option.banner = 'Usage: line-detector [options] [file|-]'
@@ -28,9 +28,9 @@ def main
   filename = ARGV.first unless ARGV.empty?
 
   if filename == '-'
-    puts STDIN.readline.detect_line_ending.inspect
+    puts LineDetector.detect_line_ending_of_text(STDIN.read).to_s
   else
-    puts LineDetector.detect_line_ending_of_file(filename).inspect
+    puts "#{filename}: #{LineDetector.detect_line_ending_of_file(filename).to_s}"
   end
 end
 

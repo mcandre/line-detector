@@ -6,31 +6,36 @@ Given(/^the program has finished$/) do
   @cucumber_mac = `line-detector examples/index-macweb.html`
   @cucumber_monster = `line-detector examples/index-monstrosity.html`
   @cucumber_empty = `line-detector examples/empty.html`
-  @cucumber_single_line = `line-detector examples/index-compressed.html`
+  @cucumber_single_line = `line-detector examples/index.min.html`
+  @cucumber_stdin = `line-detector < examples/index.html`
 end
 
 Then(/^the output is correct for each test$/) do
   lines = @cucumber.split("\n")
   expect(lines.length).to eq(1)
-  expect(lines[0]).to match(%r(^:lf$))
+  expect(lines[0]).to match(%r(^examples/index.html: lf$))
 
   lines_ie = @cucumber_ie.split("\n")
   expect(lines_ie.length).to eq(1)
-  expect(lines_ie[0]).to match(%r(^:crlf$))
+  expect(lines_ie[0]).to match(%r(^examples/index-ie.html: crlf$))
 
   lines_mac = @cucumber_mac.split("\n")
   expect(lines_mac.length).to eq(1)
-  expect(lines_mac[0]).to match(%r(^:cr$))
+  expect(lines_mac[0]).to match(%r(^examples/index-macweb.html: cr$))
 
   lines_monster = @cucumber_monster.split("\n")
   expect(lines_monster.length).to eq(1)
-  expect(lines_monster[0]).to match(%r(^:mix$))
+  expect(lines_monster[0]).to match(%r(^examples/index-monstrosity.html: mix$))
 
   lines_empty = @cucumber_empty.split("\n")
   expect(lines_empty.length).to eq(1)
-  expect(lines_empty[0]).to match(%r(^nil$))
+  expect(lines_empty[0]).to match(%r(^examples/empty.html: none$))
 
   lines_single_line = @cucumber_single_line.split("\n")
   expect(lines_single_line.length).to eq(1)
-  expect(lines_single_line[0]).to match(%r(^nil$))
+  expect(lines_single_line[0]).to match(%r(^examples/index.min.html: none$))
+
+  lines_stdin = @cucumber_stdin.split("\n")
+  expect(lines_stdin.length).to eq(1)
+  expect(lines_stdin[0]).to match(%r(^lf$))
 end

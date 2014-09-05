@@ -12,11 +12,36 @@ https://rubygems.org/gems/line-detector
 
 line-detector detects the line ending format of files and arbitrary text:
 
-* Unix = `:lf`
-* Windows/DOS = `:crlf`
-* Old Mac = `:cr`
-* Multiple line endings = `:mix`
-* Single-line and empty files = `nil`
+* Unix (lf)
+* Windows/DOS (crlf)
+* Old Mac (cr)
+* Multiple line endings (mix)
+* Single-line and empty files (none)
+
+# EXAMPLES
+
+```
+$ line-detector examples/index.html 
+examples/index.html: lf
+
+$ line-detector examples/index-ie.html 
+examples/index-ie.html: crlf
+
+$ line-detector examples/index-macweb.html 
+examples/index-macweb.html: cr
+
+$ line-detector examples/index-monstrosity.html 
+examples/index-monstrosity.html: mix
+
+$ line-detector examples/empty.html 
+examples/empty.html: none
+
+$ line-detector examples/index.min.html 
+examples/index.min.html: none
+
+$ line-detector < examples/index.html 
+lf
+```
 
 # REQUIREMENTS
 

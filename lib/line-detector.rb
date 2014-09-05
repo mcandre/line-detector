@@ -13,7 +13,7 @@ module LineDetector
     elsif line =~ /\r/
       :cr
     else
-      nil
+      :none
     end
   end
 
@@ -23,7 +23,7 @@ module LineDetector
     end.uniq
 
     if line_endings == []
-      nil
+      :none
     elsif line_endings.length == 1
       line_endings.first
     else

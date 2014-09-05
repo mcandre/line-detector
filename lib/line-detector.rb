@@ -9,18 +9,19 @@ module LineDetector
   #
   # Detect line ending format of arbitrary text
   #
-  # "\r\n"  => :crlf
-  # "\n\r"  => :lfcr
-  # "\n"    => :lf
-  # "\r"    => :cr
-  # "\v"    => :vt
-  # "\f"    => :ff
-  # "\na\r" => :mix
-  # "a"     => :none
-  # ""      => :none
+  # "\r\n"   => :crlf
+  # "\n\r"   => :lfcr
+  # "\n"     => :lf
+  # "\r"     => :cr
+  # "\v"     => :vt
+  # "\f"     => :ff
+  # "\u2028" => :ls
+  # "\na\r"  => :mix
+  # "a"      => :none
+  # ""       => :none
   #
   def self.detect_line_ending_of_text(text)
-    line_endings = text.split(/[^\r\n\v\f]/)
+    line_endings = text.split(/[^\r\n\v\f\u2028]/)
       .reject { |ending| ending == '' }
       .map { |ending| ending.gsub(/(.+?)(\1)+/m, '\1') }
       .uniq
@@ -43,6 +44,8 @@ module LineDetector
         :vt
       when "\f"
         :ff
+      when "\u2028"
+        :ls
       else
         :unknown
       end

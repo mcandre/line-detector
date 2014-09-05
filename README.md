@@ -51,6 +51,15 @@ $ line-detector < examples/index.html
 lf
 ```
 
+line-detector also features a more capable alternative to `String#lines`, that handles some of the more obscure line ending formats.
+
+```
+$ irb
+> require 'line-detector'
+> LineDetector.lines("abc\u0085def\u0085ghi")
+ => ["abc", "def", "ghi"]
+```
+
 # REQUIREMENTS
 
 * [Ruby](https://www.ruby-lang.org/) 2+
@@ -74,6 +83,12 @@ FreeBSD
 # DEVELOPMENT
 
 ## Testing
+
+Keep the logic working:
+
+```
+$ rspec
+```
 
 Keep the interface working:
 

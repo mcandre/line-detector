@@ -66,7 +66,10 @@ $ irb
 
 ## Optional
 
+There are a handful of programs for identifying line ending formats:
+
 * [od](http://man.cx/od) can elucidate file contents by printing the raw byte values.
+* The Unix [file](http://man.cx/file) command can report CRLF files, but fails to report CRLFs in `.html` files. Hence the inspiration for line-detector.
 
 There are numerous programs that can help convert files to different line ending formats:
 
@@ -118,7 +121,3 @@ $ rake lint
 ## Git Hooks
 
 See `hooks/`.
-
-# CREDITS
-
-The Unix [file](http://man.cx/file) command can report CRLF files, but fails to report CRLFs in `.html` files. Hence the inspiration for line-detector.

@@ -80,3 +80,7 @@ $ rake lint
 ## Git Hooks
 
 See `hooks/`.
+
+# CREDITS
+
+The Unix [file](http://man.cx/file) command can report CRLF files, but fails to report CRLFs in `.html` files. Hence the inspiration for line-detector.

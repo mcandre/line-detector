@@ -6,7 +6,7 @@ Given(/^the program has finished$/) do
   @cucumber_ie = `line-detector examples/index-ie.html`
   @cucumber_mac = `line-detector examples/index-macweb.html`
   @cucumber_monster = `line-detector examples/index-monstrosity.html`
-  @cucumber_empty = `line-detector examples/empty.html`
+  @cucumber_empty = `line-detector examples/empty.txt`
   @cucumber_single_line = `line-detector examples/index.min.html`
   @cucumber_stdin = `line-detector < examples/index.html`
   @cucumber_dne = `line-detector examples/file-that-does-not-exist`
@@ -41,7 +41,7 @@ Then(/^the output is correct for each test$/) do
 
   lines_empty = @cucumber_empty.split("\n")
   expect(lines_empty.length).to eq(1)
-  expect(lines_empty[0]).to match(%r(^examples/empty.html: none$))
+  expect(lines_empty[0]).to match(%r(^examples/empty.txt: none$))
 
   lines_single_line = @cucumber_single_line.split("\n")
   expect(lines_single_line.length).to eq(1)

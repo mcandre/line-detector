@@ -41,8 +41,8 @@ examples/index-macweb.html: cr
 $ line-detector examples/index-monstrosity.html 
 examples/index-monstrosity.html: mix
 
-$ line-detector examples/empty.html 
-examples/empty.html: none
+$ line-detector examples/empty.txt
+examples/empty.txt: none
 
 $ line-detector examples/index.min.html 
 examples/index.min.html: none

@@ -54,12 +54,82 @@ module LineDetector
   end
 
   #
+  # Detects presence of final end of line in arbitrary text
+  #
+  # "abc\ndef\n"     => true
+  # "abc\r\ndef\r\n" => true
+  # "abc\ndef"       => false
+  # "abc\r\ndef\r"   => false
+  # "abcdef"         => false
+  # ""               => false
+  #
+  def self.detect_final_eol_of_text(text)
+    line_ending = detect_line_ending_of_text(text)
+
+    if line_ending == :none
+      false
+    elsif line_ending == :mix
+      false
+    else
+      text.end_with?(NAME2EOL[line_ending])
+    end
+  end
+
+  #
   # Detect line ending format of a file
   #
   # Assumes file is a text file.
   #
   def self.detect_line_ending_of_file(filename)
     detect_line_ending_of_text(open(filename).read)
+  end
+
+  #
+  # Detect presence of final end of line in a file
+  #
+  # Assumes file is a text file.
+  #
+  def self.detect_final_eol_of_file(filename)
+    detect_final_eol_of_text(open(filename).read)
+  end
+
+  class Report
+    attr_accessor :line_ending, :final_eol
+
+    def initialize(line_ending, final_eol)
+      @line_ending = line_ending
+      @final_eol = final_eol
+    end
+
+    def to_s
+      final_eol_piece =
+        if @final_eol
+          ', with final eol'
+        else
+          ', without final eol'
+        end
+
+      "#{@line_ending.to_s}#{final_eol_piece}"
+    end
+  end
+
+  #
+  # Report line ending and presence of final line ending of arbitrary text
+  #
+  def self.report_of_text(text)
+    Report.new(
+      detect_line_ending_of_text(text),
+      detect_final_eol_of_text(text)
+    )
+  end
+
+  #
+  # Detect presence of final end of line in a file
+  #
+  # Assumes file is a text file.
+  #
+  def self.report_of_file(filename)
+    report_of_text(open(filename).read)
   end
 
   #

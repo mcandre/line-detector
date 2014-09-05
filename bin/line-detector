@@ -28,11 +28,14 @@ def main
   filename = ARGV.first unless ARGV.empty?
 
   if filename == '-'
-    puts LineDetector.detect_line_ending_of_text(STDIN.read).to_s
+    text = STDIN.read
+    report = LineDetector.report_of_text(text)
+    puts report
   elsif !File.exists?(filename)
     puts "#{filename} does not exist"
   else
-    puts "#{filename}: #{LineDetector.detect_line_ending_of_file(filename).to_s}"
+    report = LineDetector.report_of_file(filename)
+    puts "#{filename}: #{report}"
   end
 end
 

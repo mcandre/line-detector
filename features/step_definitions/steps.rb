@@ -21,35 +21,35 @@ end
 Then(/^the output is correct for each test$/) do
   lines = @cucumber.split("\n")
   expect(lines.length).to eq(1)
-  expect(lines[0]).to match(%r(^examples/index.html: lf$))
+  expect(lines[0]).to match(%r(^examples/index.html: lf, with final eol$))
 
   lines_sep = @cucumber_sep.split("\n")
   expect(lines_sep.length).to eq(1)
-  expect(lines_sep[0]).to match(%r(^examples/index-separated.html: lf$))
+  expect(lines_sep[0]).to match(%r(^examples/index-separated.html: lf, without final eol$))
 
   lines_ie = @cucumber_ie.split("\n")
   expect(lines_ie.length).to eq(1)
-  expect(lines_ie[0]).to match(%r(^examples/index-ie.html: crlf$))
+  expect(lines_ie[0]).to match(%r(^examples/index-ie.html: crlf, with final eol$))
 
   lines_mac = @cucumber_mac.split("\n")
   expect(lines_mac.length).to eq(1)
-  expect(lines_mac[0]).to match(%r(^examples/index-macweb.html: cr$))
+  expect(lines_mac[0]).to match(%r(^examples/index-macweb.html: cr, with final eol$))
 
   lines_monster = @cucumber_monster.split("\n")
   expect(lines_monster.length).to eq(1)
-  expect(lines_monster[0]).to match(%r(^examples/index-monstrosity.html: mix$))
+  expect(lines_monster[0]).to match(%r(^examples/index-monstrosity.html: mix, without final eol$))
 
   lines_empty = @cucumber_empty.split("\n")
   expect(lines_empty.length).to eq(1)
-  expect(lines_empty[0]).to match(%r(^examples/empty.txt: none$))
+  expect(lines_empty[0]).to match(%r(^examples/empty.txt: none, without final eol$))
 
   lines_single_line = @cucumber_single_line.split("\n")
   expect(lines_single_line.length).to eq(1)
-  expect(lines_single_line[0]).to match(%r(^examples/index.min.html: none$))
+  expect(lines_single_line[0]).to match(%r(^examples/index.min.html: none, without final eol$))
 
   lines_stdin = @cucumber_stdin.split("\n")
   expect(lines_stdin.length).to eq(1)
-  expect(lines_stdin[0]).to match(%r(^lf$))
+  expect(lines_stdin[0]).to match(%r(^lf, with final eol$))
 
   lines_dne = @cucumber_dne.split("\n")
   expect(lines_dne.length).to eq(1)
@@ -57,25 +57,25 @@ Then(/^the output is correct for each test$/) do
 
   lines_lfcr = @cucumber_lfcr.split("\n")
   expect(lines_lfcr.length).to eq(1)
-  expect(lines_lfcr[0]).to match(%r(^examples/index-acorn.html: lfcr$))
+  expect(lines_lfcr[0]).to match(%r(^examples/index-acorn.html: lfcr, with final eol$))
 
   lines_vt = @cucumber_vt.split("\n")
   expect(lines_vt.length).to eq(1)
-  expect(lines_vt[0]).to match(%r(^examples/index-vertical.html: vt$))
+  expect(lines_vt[0]).to match(%r(^examples/index-vertical.html: vt, with final eol$))
 
   lines_ff = @cucumber_ff.split("\n")
   expect(lines_ff.length).to eq(1)
-  expect(lines_ff[0]).to match(%r(^examples/index-form-feed.html: ff$))
+  expect(lines_ff[0]).to match(%r(^examples/index-form-feed.html: ff, with final eol$))
 
   lines_ls = @cucumber_ls.split("\n")
   expect(lines_ls.length).to eq(1)
-  expect(lines_ls[0]).to match(%r(^examples/index-line-separator.html: ls$))
+  expect(lines_ls[0]).to match(%r(^examples/index-line-separator.html: ls, with final eol$))
 
   lines_ps = @cucumber_ps.split("\n")
   expect(lines_ps.length).to eq(1)
-  expect(lines_ps[0]).to match(%r(^examples/index-paragraph-separator.html: ps$))
+  expect(lines_ps[0]).to match(%r(^examples/index-paragraph-separator.html: ps, with final eol$))
 
   lines_nel = @cucumber_nel.split("\n")
   expect(lines_nel.length).to eq(1)
-  expect(lines_nel[0]).to match(%r(^examples/index-next-line.html: nel$))
+  expect(lines_nel[0]).to match(%r(^examples/index-next-line.html: nel, with final eol$))
 end

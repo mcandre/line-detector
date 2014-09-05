@@ -30,25 +30,28 @@ For more information on line endings, see [Wikipedia: Newline](https://en.wikipe
 
 ```
 $ line-detector examples/index.html 
-examples/index.html: lf
+examples/index.html: lf, with final eol
+
+$ line-detector examples/index-separated.html
+$ examples/index-separated.html: lf, without final eol
 
 $ line-detector examples/index-ie.html 
-examples/index-ie.html: crlf
+examples/index-ie.html: crlf, with final eol
 
 $ line-detector examples/index-macweb.html 
-examples/index-macweb.html: cr
+examples/index-macweb.html: cr, with final eol
 
 $ line-detector examples/index-monstrosity.html 
-examples/index-monstrosity.html: mix
+examples/index-monstrosity.html: mix, without final eol
 
 $ line-detector examples/empty.txt
-examples/empty.txt: none
+examples/empty.txt: none, without final eol
 
 $ line-detector examples/index.min.html 
-examples/index.min.html: none
+examples/index.min.html: none, without final eol
 
 $ line-detector < examples/index.html 
-lf
+lf, with final eol
 ```
 
 line-detector also features a more capable alternative to `String#lines`, that handles some of the more obscure line ending formats.

@@ -20,6 +20,7 @@ line-detector detects the line ending format of files and arbitrary text:
 * Form Feed (ff)
 * Line Separator (ls)
 * Paragraph Separator (ps)
+* Next Line (nel)
 * Multiple line endings (mix)
 * Single-line and empty files (none)
 
@@ -53,6 +54,10 @@ lf
 # REQUIREMENTS
 
 * [Ruby](https://www.ruby-lang.org/) 2+
+
+## Optional
+
+* [od](http://man.cx/od) can elucidate file contents by printing the raw byte values.
 
 # INSTALL
 

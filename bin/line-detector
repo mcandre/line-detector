@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'find'
+require 'optparse'
+
+require 'rubygems'
+require 'line-detector'
+
+def main
+  filename = ['-']
+
+  option = OptionParser.new do |option|
+    option.banner = 'Usage: line-detector [options] [file|-]'
+
+    option.on('-h', '--help', 'Print usage info') do
+      puts option
+      exit
+    end
+
+    option.on('-v', '--version', 'Print version info') do
+      puts "line-detector #{LineDetector::VERSION}"
+      exit
+    end
+  end
+
+  option.parse!
+
+  filename = ARGV.first unless ARGV.empty?
+
+  if filename == '-'
+    puts STDIN.readline.detect_line_ending.inspect
+  else
+    puts LineDetector.detect_line_ending_of_file(filename).inspect
+  end
+end
+
+begin
+  main
+# User may quit line-detector before completion.
+rescue Interrupt
+  nil
+# line-detector may be piped to another program (e.g. `less`),
+# which is quit before line-detector completes.
+rescue Errno::EPIPE, Errno::EMFILE
+  nil
+end

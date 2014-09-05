@@ -12,11 +12,11 @@ https://rubygems.org/gems/line-detector
 
 line-detector detects the line ending format of files and arbitrary text:
 
-* Unix: lf
-* Windows/DOS: crlf
-* Old Mac: cr
-* Multiple line endings: mix
-* Single-line and empty files: nil
+* Unix = `:lf`
+* Windows/DOS = `:crlf`
+* Old Mac = `:cr`
+* Multiple line endings = `:mix`
+* Single-line and empty files = `nil`
 
 # REQUIREMENTS
 

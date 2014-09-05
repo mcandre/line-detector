@@ -6,34 +6,51 @@ require 'version'
 # LineDetector - line ending detector
 #
 module LineDetector
-  # Assumes input is not multi-line
-  def self.detect_line_ending_of_line(line)
-    if line =~ /\r\n/
-      :crlf
-    elsif line =~ /\n/
-      :lf
-    elsif line =~ /\r/
-      :cr
-    else
-      :none
-    end
-  end
-
+  #
+  # Detect line ending format of arbitrary text
+  #
+  # "\r\n"  => :crlf
+  # "\n\r"  => :lfcr
+  # "\n"    => :lf
+  # "\r"    => :cr
+  # "\na\r" => :mix
+  # "a"     => :none
+  # ""      => :none
+  #
   def self.detect_line_ending_of_text(text)
-    line_endings = text.each_line.map do |line|
-      detect_line_ending_of_line(line)
-    end.uniq
+    line_endings = text.split(/[^\r\n]/)
+      .reject { |ending| ending == '' }
+      .map { |ending| ending.gsub(/(.+?)(\1)+/m, '\1') }
+      .uniq
 
-    if line_endings == []
+    len = line_endings.length
+
+    if len == 0
       :none
-    elsif line_endings.length == 1
-      line_endings.first
+    elsif len == 1
+      case line_endings.first
+      when "\n"
+        :lf
+      when "\r\n"
+        :crlf
+      when "\n\r"
+        :lfcr
+      when "\r"
+        :cr
+      else
+        :unknown
+      end
     else
       :mix
     end
   end
 
+  #
+  # Detect line ending format of a file
+  #
+  # Assumes file is a text file.
+  #
   def self.detect_line_ending_of_file(filename)
-    detect_line_ending_of_text(open(filename))
+    detect_line_ending_of_text(open(filename).read)
   end
 end

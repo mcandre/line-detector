@@ -2,6 +2,7 @@ Given(/^the program has finished$/) do
   # Test files are generated using iconv.
 
   @cucumber = `line-detector examples/index.html`
+  @cucumber_sep = `line-detector examples/index-separated.html`
   @cucumber_ie = `line-detector examples/index-ie.html`
   @cucumber_mac = `line-detector examples/index-macweb.html`
   @cucumber_monster = `line-detector examples/index-monstrosity.html`
@@ -9,12 +10,17 @@ Given(/^the program has finished$/) do
   @cucumber_single_line = `line-detector examples/index.min.html`
   @cucumber_stdin = `line-detector < examples/index.html`
   @cucumber_dne = `line-detector examples/file-that-does-not-exist`
+  @cucumber_lfcr = `line-detector examples/index-acorn.html`
 end
 
 Then(/^the output is correct for each test$/) do
   lines = @cucumber.split("\n")
   expect(lines.length).to eq(1)
   expect(lines[0]).to match(%r(^examples/index.html: lf$))
+
+  lines_sep = @cucumber_sep.split("\n")
+  expect(lines_sep.length).to eq(1)
+  expect(lines_sep[0]).to match(%r(^examples/index-separated.html: lf$))
 
   lines_ie = @cucumber_ie.split("\n")
   expect(lines_ie.length).to eq(1)
@@ -43,4 +49,8 @@ Then(/^the output is correct for each test$/) do
   lines_dne = @cucumber_dne.split("\n")
   expect(lines_dne.length).to eq(1)
   expect(lines_dne[0]).to match(%r(^examples/file-that-does-not-exist does not exist$))
+
+  lines_lfcr = @cucumber_lfcr.split("\n")
+  expect(lines_lfcr.length).to eq(1)
+  expect(lines_lfcr[0]).to match(%r(^examples/index-acorn.html: lfcr$))
 end

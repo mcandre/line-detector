@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'ptools'
 
 require 'version'
 

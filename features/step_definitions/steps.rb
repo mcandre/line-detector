@@ -11,6 +11,7 @@ Given(/^the program has finished$/) do
   @cucumber_stdin = `line-detector < examples/index.html`
   @cucumber_dne = `line-detector examples/file-that-does-not-exist`
   @cucumber_lfcr = `line-detector examples/index-acorn.html`
+  @cucumber_vt = `line-detector examples/index-vertical.html`
 end
 
 Then(/^the output is correct for each test$/) do
@@ -53,4 +54,8 @@ Then(/^the output is correct for each test$/) do
   lines_lfcr = @cucumber_lfcr.split("\n")
   expect(lines_lfcr.length).to eq(1)
   expect(lines_lfcr[0]).to match(%r(^examples/index-acorn.html: lfcr$))
+
+  lines_vt = @cucumber_vt.split("\n")
+  expect(lines_vt.length).to eq(1)
+  expect(lines_vt[0]).to match(%r(^examples/index-vertical.html: vt$))
 end

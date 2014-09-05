@@ -13,12 +13,13 @@ module LineDetector
   # "\n\r"  => :lfcr
   # "\n"    => :lf
   # "\r"    => :cr
+  # "\v"    => :vt
   # "\na\r" => :mix
   # "a"     => :none
   # ""      => :none
   #
   def self.detect_line_ending_of_text(text)
-    line_endings = text.split(/[^\r\n]/)
+    line_endings = text.split(/[^\r\n\v]/)
       .reject { |ending| ending == '' }
       .map { |ending| ending.gsub(/(.+?)(\1)+/m, '\1') }
       .uniq
@@ -37,6 +38,8 @@ module LineDetector
         :lfcr
       when "\r"
         :cr
+      when "\v"
+        :vt
       else
         :unknown
       end

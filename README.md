@@ -68,6 +68,16 @@ $ irb
 
 * [od](http://man.cx/od) can elucidate file contents by printing the raw byte values.
 
+There are numerous programs that can help convert files to different line ending formats:
+
+* [dos2unix](http://waterlan.home.xs4all.nl/dos2unix.html)
+* [tr](http://man.cx/tr)
+* [sed](https://www.gnu.org/software/sed/)
+* [awk](http://cm.bell-labs.com/cm/cs/awkbook/index.html)
+* [perl](http://www.perl.org/)
+* [emacs](http://www.gnu.org/software/emacs/)
+* [vim](http://www.vim.org/)
+
 # INSTALL
 
 Install via [RubyGems](http://rubygems.org/):

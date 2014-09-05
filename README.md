@@ -15,8 +15,15 @@ line-detector detects the line ending format of files and arbitrary text:
 * Unix (lf)
 * Windows/DOS (crlf)
 * Old Mac (cr)
+* Acorn BBC (lfcr)
+* Vertical Tab (vt)
+* Form Feed (ff)
+* Line Separator (ls)
+* Paragraph Separator (ps)
 * Multiple line endings (mix)
 * Single-line and empty files (none)
+
+For more information on line endings, see [Wikipedia: Newline](https://en.wikipedia.org/wiki/Newline).
 
 # EXAMPLES
 

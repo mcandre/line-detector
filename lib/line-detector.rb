@@ -3,6 +3,9 @@ require 'ptools'
 
 require 'version'
 
+#
+# LineDetector - line ending detector
+#
 module LineDetector
   # Assumes input is not multi-line
   def self.detect_line_ending_of_line(line)
@@ -19,7 +22,7 @@ module LineDetector
 
   def self.detect_line_ending_of_text(text)
     line_endings = text.each_line.map do |line|
-      self.detect_line_ending_of_line(line)
+      detect_line_ending_of_line(line)
     end.uniq
 
     if line_endings == []
@@ -32,10 +35,6 @@ module LineDetector
   end
 
   def self.detect_line_ending_of_file(filename)
-    begin
-      self.detect_line_ending_of_text(open(filename))
-    rescue Errno::ENOENT
-      nil
-    end
+    detect_line_ending_of_text(open(filename))
   end
 end

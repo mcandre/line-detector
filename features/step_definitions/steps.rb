@@ -8,6 +8,7 @@ Given(/^the program has finished$/) do
   @cucumber_empty = `line-detector examples/empty.html`
   @cucumber_single_line = `line-detector examples/index.min.html`
   @cucumber_stdin = `line-detector < examples/index.html`
+  @cucumber_dne = `line-detector examples/file-that-does-not-exist`
 end
 
 Then(/^the output is correct for each test$/) do
@@ -38,4 +39,8 @@ Then(/^the output is correct for each test$/) do
   lines_stdin = @cucumber_stdin.split("\n")
   expect(lines_stdin.length).to eq(1)
   expect(lines_stdin[0]).to match(%r(^lf$))
+
+  lines_dne = @cucumber_dne.split("\n")
+  expect(lines_dne.length).to eq(1)
+  expect(lines_dne[0]).to match(%r(^examples/file-that-does-not-exist does not exist$))
 end

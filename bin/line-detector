@@ -29,6 +29,8 @@ def main
 
   if filename == '-'
     puts LineDetector.detect_line_ending_of_text(STDIN.read).to_s
+  elsif !File.exists?(filename)
+    puts "#{filename} does not exist"
   else
     puts "#{filename}: #{LineDetector.detect_line_ending_of_file(filename).to_s}"
   end

@@ -51,6 +51,9 @@ module LineDetector
     else
       :mix
     end
+  # Handle String#split errors on binary data
+  rescue ArgumentError
+    :unknown
   end
 
   #
@@ -71,7 +74,13 @@ module LineDetector
     elsif line_ending == :mix
       false
     else
-      text.end_with?(NAME2EOL[line_ending])
+      eol = NAME2EOL[line_ending] || :unknown
+
+      if eol == :unknown
+        false
+      else
+        text.end_with?(NAME2EOL[line_ending])
+      end
     end
   end
 

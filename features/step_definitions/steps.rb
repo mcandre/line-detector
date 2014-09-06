@@ -16,6 +16,7 @@ Given(/^the program has finished$/) do
   @cucumber_ls = `line-detector examples/index-line-separator.html`
   @cucumber_ps = `line-detector examples/index-paragraph-separator.html`
   @cucumber_nel = `line-detector examples/index-next-line.html`
+  @cucumber_unknown = `line-detector examples/test.txt.flip`
 end
 
 Then(/^the output is correct for each test$/) do
@@ -78,4 +79,8 @@ Then(/^the output is correct for each test$/) do
   lines_nel = @cucumber_nel.split("\n")
   expect(lines_nel.length).to eq(1)
   expect(lines_nel[0]).to match(%r(^examples/index-next-line.html: nel, with final eol$))
+
+  lines_unknown = @cucumber_unknown.split("\n")
+  expect(lines_unknown.length).to eq(1)
+  expect(lines_unknown[0]).to match(%r(^examples/test.txt.flip: unknown, without final eol$))
 end

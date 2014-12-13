@@ -1,30 +1,6 @@
 # line-detector - line ending detector
 
-# HOMEPAGE
-
-https://github.com/mcandre/line-detector
-
-# RUBYGEMS
-
-https://rubygems.org/gems/line-detector
-
-# ABOUT
-
-line-detector detects the line ending format of files and arbitrary text:
-
-* Unix (lf)
-* Windows/DOS (crlf)
-* Old Mac (cr)
-* Acorn BBC (lfcr)
-* Vertical Tab (vt)
-* Form Feed (ff)
-* Line Separator (ls)
-* Paragraph Separator (ps)
-* Next Line (nel)
-* Multiple line endings (mix)
-* Single-line and empty files (none)
-
-For more information on line endings, see [Wikipedia: Newline](https://en.wikipedia.org/wiki/Newline).
+`line-detector` searches your source code for files with strange line endings, which may cause problems with software interoperability.
 
 # EXAMPLES
 
@@ -62,6 +38,32 @@ $ irb
 > LineDetector.lines("abc\u0085def\u0085ghi")
  => ["abc", "def", "ghi"]
 ```
+
+# HOMEPAGE
+
+https://github.com/mcandre/line-detector
+
+# RUBYGEMS
+
+https://rubygems.org/gems/line-detector
+
+# ABOUT
+
+line-detector detects the line ending format of files and arbitrary text:
+
+* Unix (lf)
+* Windows/DOS (crlf)
+* Old Mac (cr)
+* Acorn BBC (lfcr)
+* Vertical Tab (vt)
+* Form Feed (ff)
+* Line Separator (ls)
+* Paragraph Separator (ps)
+* Next Line (nel)
+* Multiple line endings (mix)
+* Single-line and empty files (none)
+
+For more information on line endings, see [Wikipedia: Newline](https://en.wikipedia.org/wiki/Newline).
 
 # REQUIREMENTS
 

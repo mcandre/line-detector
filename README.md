@@ -1,6 +1,8 @@
 # line-detector - line ending detector
 
-`line-detector` searches your source code for files with strange line endings, which may cause problems with software interoperability.
+`line-detector` detects the type of line ending(s) a file uses.
+
+`line-detector` is used by [lili](https://github.com/mcandre/lili) to search for strange line endings in software projects.
 
 # EXAMPLES
 

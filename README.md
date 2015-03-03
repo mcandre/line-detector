@@ -7,28 +7,28 @@
 # EXAMPLES
 
 ```
-$ line-detector examples/index.html 
+$ line-detector examples/index.html
 examples/index.html: lf, with final eol
 
 $ line-detector examples/index-separated.html
 $ examples/index-separated.html: lf, without final eol
 
-$ line-detector examples/index-ie.html 
+$ line-detector examples/index-ie.html
 examples/index-ie.html: crlf, with final eol
 
-$ line-detector examples/index-macweb.html 
+$ line-detector examples/index-macweb.html
 examples/index-macweb.html: cr, with final eol
 
-$ line-detector examples/index-monstrosity.html 
+$ line-detector examples/index-monstrosity.html
 examples/index-monstrosity.html: mix, without final eol
 
 $ line-detector examples/empty.txt
 examples/empty.txt: none, without final eol
 
-$ line-detector examples/index.min.html 
+$ line-detector examples/index.min.html
 examples/index.min.html: none, without final eol
 
-$ line-detector < examples/index.html 
+$ line-detector < examples/index.html
 lf, with final eol
 ```
 

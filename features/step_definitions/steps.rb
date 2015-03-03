@@ -30,7 +30,7 @@ Then(/^the output is correct for each test$/) do
 
   lines_ie = @cucumber_ie.split("\n")
   expect(lines_ie.length).to eq(1)
-  expect(lines_ie[0]).to match(%r(^examples/index-ie.html: crlf, with final eol$))
+  expect(lines_ie[0]).to match(%r(^examples/index-ie.html: crlf, without final eol$))
 
   lines_mac = @cucumber_mac.split("\n")
   expect(lines_mac.length).to eq(1)

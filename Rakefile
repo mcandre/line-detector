@@ -9,8 +9,8 @@ task :install => [:gem] do
 end
 
 task :test => [:clean, :install] do
-  sh 'rspec'
-  sh 'cucumber'
+  sh 'bundle exec rspec'
+  sh 'bundle exec cucumber'
 end
 
 task :publish => [:clean, :gem] do

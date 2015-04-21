@@ -1,6 +1,6 @@
 require 'rubygems'
 
-require 'version'
+require_relative 'version'
 
 #
 # LineDetector - line ending detector

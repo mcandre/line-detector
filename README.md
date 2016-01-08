@@ -69,7 +69,7 @@ For more information on line endings, see [Wikipedia: Newline](https://en.wikipe
 
 # REQUIREMENTS
 
-* [Ruby](https://www.ruby-lang.org/) 1.9+
+* [Ruby](https://www.ruby-lang.org/) 2.0+
 
 ## Optional
 

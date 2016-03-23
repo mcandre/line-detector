@@ -16,7 +16,7 @@ Gem::Specification.new { |s|
   s.files = Dir['lib/*.rb'] + ['LICENSE.md']
   s.homepage = 'https://github.com/mcandre/line-detector'
 
-  s.required_ruby_version = '>= 2.0'
+  s.required_ruby_version = '>= 2.1'
 
   s.add_development_dependency 'rake', '~> 10.3'
   s.add_development_dependency 'reek', '~> 1.3'

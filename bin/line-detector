@@ -7,45 +7,45 @@ require 'rubygems'
 require 'line-detector'
 
 def main
-  filename = '-'
+    filename = '-'
 
-  option = OptionParser.new do |option|
-    option.banner = 'Usage: line-detector [options] [file|-]'
+    option = OptionParser.new do |option|
+        option.banner = 'Usage: line-detector [options] [file|-]'
 
-    option.on('-h', '--help', 'Print usage info') do
-      puts option
-      exit
+        option.on('-h', '--help', 'Print usage info') do
+            puts option
+            exit
+        end
+
+        option.on('-v', '--version', 'Print version info') do
+            puts "line-detector #{LineDetector::VERSION}"
+            exit
+        end
     end
 
-    option.on('-v', '--version', 'Print version info') do
-      puts "line-detector #{LineDetector::VERSION}"
-      exit
+    option.parse!
+
+    filename = ARGV.first unless ARGV.empty?
+
+    if filename == '-'
+        text = STDIN.read
+        report = LineDetector.report_of_text(text)
+        puts report
+    elsif !File.exists?(filename)
+        puts "#{filename} does not exist"
+    else
+        report = LineDetector.report_of_file(filename)
+        puts "#{filename}: #{report}"
     end
-  end
-
-  option.parse!
-
-  filename = ARGV.first unless ARGV.empty?
-
-  if filename == '-'
-    text = STDIN.read
-    report = LineDetector.report_of_text(text)
-    puts report
-  elsif !File.exists?(filename)
-    puts "#{filename} does not exist"
-  else
-    report = LineDetector.report_of_file(filename)
-    puts "#{filename}: #{report}"
-  end
 end
 
 begin
-  main
-# User may quit line-detector before completion.
+    main
+    # User may quit line-detector before completion.
 rescue Interrupt
-  nil
-# line-detector may be piped to another program (e.g. `less`),
-# which is quit before line-detector completes.
+    nil
+    # line-detector may be piped to another program (e.g. `less`),
+    # which is quit before line-detector completes.
 rescue Errno::EPIPE, Errno::EMFILE
-  nil
+    nil
 end
